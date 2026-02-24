@@ -6,7 +6,7 @@ import tensorflow as tf
 
 model = tf.keras.models.load_model("SER_model.h5")
 
-emotion_labels = ["happy", "sad","angry"]
+emotion_labels = ["angry","happy","sad"]
 
 def extract_features(file_path):
     audio, sample_rate = librosa.load(file_path, duration=3, offset=0.5)
@@ -22,3 +22,20 @@ def extract_features(file_path):
         mfcc = mfcc[:, :max_len]
 
     return mfcc
+
+st.title("🎙 Speech Emotion Recognition")
+st.write("Upload a speech audio file (.wav)")
+
+uploaded_file = st.file_uploader("Choose a WAV file", type=["wav"])
+
+if uploaded_file is not None:
+    st.audio(uploaded_file)
+
+    features = extract_features(uploaded_file)
+
+    prediction = model.predict(features)
+    predicted_class = np.argmax(prediction)
+
+    emotion = emotion_labels[predicted_class]
+
+    st.success(f"Predicted Emotion: **{emotion.upper()}**")
