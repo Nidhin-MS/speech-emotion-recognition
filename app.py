@@ -8,18 +8,23 @@ model = tf.keras.models.load_model("SER_model.h5")
 
 emotion_labels = ["angry","happy","sad"]
 
-def extract_features(file_path):
-    audio, sample_rate = librosa.load(file_path, duration=3, offset=0.5)
+import numpy as np
+import librosa
 
-    mfcc = librosa.feature.mfcc(y=audio, sr=sample_rate, n_mfcc=40)
+def extract_features(file):
+    audio, sr = librosa.load(file, duration=3, offset=0.5)
 
-    max_len = 130
+    mfcc = librosa.feature.mfcc(y=audio, sr=sr, n_mfcc=40)
 
-    if mfcc.shape[1] < max_len:
-        pad_width = max_len - mfcc.shape[1]
-        mfcc = np.pad(mfcc, pad_width=((0,0),(0,pad_width)), mode='constant')
+    if mfcc.shape[1] >= 130:
+        mfcc = mfcc[:, :130]
     else:
-        mfcc = mfcc[:, :max_len]
+        pad_width = 130 - mfcc.shape[1]
+        mfcc = np.pad(mfcc, pad_width=((0, 0), (0, pad_width)))
+
+    mfcc = mfcc[..., np.newaxis]
+
+    mfcc = np.expand_dims(mfcc, axis=0)
 
     return mfcc
 
@@ -32,8 +37,9 @@ if uploaded_file is not None:
     st.audio(uploaded_file)
 
     features = extract_features(uploaded_file)
-
+    print(features.shape)
     prediction = model.predict(features)
+    
     predicted_class = np.argmax(prediction)
 
     emotion = emotion_labels[predicted_class]
