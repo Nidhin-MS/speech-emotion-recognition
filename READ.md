@@ -21,7 +21,7 @@ For this project,I used only three emotions:
 
 # Trained Model
 
-The trained CNN model is saved in HDF5(.h5) format as "SER_model.h5".This file contains the learned weights of the model trained on the RAVDESS dataset.Since it is a binary file GitHub cannot display its internal content in the browser.However,it can be downloaded and directly loaded when running the project.
+ I trained the CNN model in colab and saved in HDF5(.h5) format as "SER_model.h5" and added this file to VScode.This file contains the learned weights of the model trained on the RAVDESS dataset.Since it is a binary file GitHub cannot display its internal content in the browser.However,it can be downloaded and directly loaded when running the project.
 
 # Model Architecture
 
