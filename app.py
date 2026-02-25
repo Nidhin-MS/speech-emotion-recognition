@@ -8,9 +8,6 @@ model = tf.keras.models.load_model("SER_model.h5")
 
 emotion_labels = ["angry","happy","sad"]
 
-import numpy as np
-import librosa
-
 def extract_features(file):
     audio, sr = librosa.load(file, duration=3, offset=0.5)
 

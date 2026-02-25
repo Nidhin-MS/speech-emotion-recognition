@@ -1,0 +1,5 @@
+tensorflow
+librosa
+keras
+numpy
+streamlit
