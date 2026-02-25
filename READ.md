@@ -19,6 +19,10 @@ For this project,I used only three emotions:
 3. The features are reshaped into a format suitable for deep learning.
 4. A Convolutional Neural Network(CNN) model predicts the emotion.
 
+# Trained Model
+
+The trained CNN model is saved in HDF5(.h5) format as "SER_model.h5".This file contains the learned weights of the model trained on the RAVDESS dataset.Since it is a binary file GitHub cannot display its internal content in the browser.However,it can be downloaded and directly loaded when running the project.
+
 # Model Architecture
 
 The model is built using TensorFlow/Keras and includes:
