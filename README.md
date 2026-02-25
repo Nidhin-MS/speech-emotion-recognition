@@ -19,7 +19,17 @@ For this project,I used only three emotions:
 3. The features are reshaped into a format suitable for deep learning.
 4. A Convolutional Neural Network(CNN) model predicts the emotion.
 
-# Trained Model
+# Model Training
+
+The complete model training process is available in "SER_training.ipynb".
+
+It includes:
+- Loading the RAVDESS dataset(audio_speech_actors_01-24)from google drive
+- Feature extraction(MFCC)
+- Data preprocessing
+- CNN model building
+- Model training and evaluation
+- Saving the trained model as SER_model.h5
 
  I trained the CNN model in colab and saved in HDF5(.h5) format as "SER_model.h5" and added this file to VScode.This file contains the learned weights of the model trained on the RAVDESS dataset.Since it is a binary file GitHub cannot display its internal content in the browser.However,it can be downloaded and directly loaded when running the project.
 
